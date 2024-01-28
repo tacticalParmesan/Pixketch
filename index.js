@@ -1,7 +1,7 @@
 // Getting global necessary references
 const body = document.querySelector("body");
 const gridContainer = document.querySelector(".grid-container");
-const changeSizeButton = document.querySelector("#size-button");
+const changeSizeButton = document.querySelector(".size");
 
 function createGrid(rows=16, cols= 16) {
   // Create a grid with specified rows and columns; the grid ddisplay will be achieved by CSS though;
@@ -56,6 +56,10 @@ function changeGridSize() {
   }
   createGrid(newGridSize, newGridSize);
 };
+
+function toggleGridView() {
+
+}
 
 // Web App execution
 createGrid();
