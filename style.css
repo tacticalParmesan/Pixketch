@@ -1,0 +1,46 @@
+:root {
+  font-size: 16px;
+  font-family: "VT323", sans-serif;
+  /* --background-color: #083962;
+  --elements-color: #2062AC;
+  --elements-border: #5A8BCD;
+  --highlight-color: #D5AC4A;
+  --text: azure; */
+}
+
+/* Body styiling */
+
+body {
+  display: flex;
+  flex-direction: column;
+  /* background-color: var(--background-color); */
+  margin: 0rem;
+  padding: 0rem;
+}
+
+/* Header section styling */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem ;
+  /* background-color: var(--elements-color);
+  color: var(--text); */
+}
+
+#title {
+  font-size: 1.5rem;
+}
+
+.links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.2rem;
+}
