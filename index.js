@@ -21,7 +21,7 @@ window.onload(initializeApp());
 function initializeApp() {
   // Web App's first execution, call basic functions and grab necessary references
   createGrid();
-  draw();
+  draw(); 
   changeSizeButton.addEventListener("mousedown", changeGridSize);
   changeModeButton.addEventListener("mousedown", setDrawMode);
 }
