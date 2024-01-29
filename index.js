@@ -8,13 +8,18 @@ let gridContainer = document.querySelector(".grid-container");
 // Buttons present on the UI
 const changeSizeButton = document.querySelector(".size");
 const changeModeButton = document.querySelector(".change-mode");
+const toggleGridViewButton = document.querySelector(".toggle");
 
 // Check for current drawing mode and a bool to let draw by click and hover;
 let drawMode = "Click"; // Default mode is click
 let isDrawing = false;  
 
+// Save the border in case grid visibility is set to On;
+let isGridVisible = false; // False by default
+let currentSquareBorder = "none"; // White is default;
+
 // Start the app when the window is loaded;
-window.onload(initializeApp());
+window.onload = initializeApp();
 
 // --------- FUNCTIONALITIES ----------
 
@@ -24,10 +29,14 @@ function initializeApp() {
   draw(); 
   changeSizeButton.addEventListener("mousedown", changeGridSize);
   changeModeButton.addEventListener("mousedown", setDrawMode);
+  toggleGridViewButton.addEventListener("mousedown", toggleGridView);
 }
 
 function createGrid(rows=16, cols= 16) {
-  // Create a grid with specified rows and columns; the grid ddisplay will be achieved by CSS though;
+  /* Create a grid with specified rows and columns; the grid display will be achieved
+   by CSS though. Creating a new grid *will* brek things as it overwrites many of
+   the options that the user may have toggled: so everytime a new grid is created
+   everyting will reset - except for the drawing mode. */
   for(let i = 0; i <= rows; i++) {
 
     // Create a new row and append it to the grid...
@@ -40,15 +49,28 @@ function createGrid(rows=16, cols= 16) {
       newSquare.classList.add("square")
       newRow.appendChild(newSquare);
     }
+
     gridContainer.appendChild(newRow);
+
+    /* The statements below assure that everything stays in plave when a new grid 
+    is created, or things will just break!
+    1. Call again the draw function to load the drawmode;
+    2. Reset grid visibility to avoid visual bugs; */
+    draw();
+    isGridVisible = false;
+    toggleGridViewButton.textContent = "Toggle grid: OFF";
+    currentSquareBorder = "none"; 
   }
 }
 
 function draw() {
+  /* This function need to be called every time there is a change of some kind to
+  the grid, because the app needs to 'remember' which drawmode is currently 
+  selected. */
+
   if (drawMode === "Sketch") {
     drawByHovering();
   } 
-  
   else if (drawMode === "Click") {
     drawByClicking();
   }
@@ -76,8 +98,8 @@ function drawByClicking() {
     square.addEventListener("dragstart", (e) => e.preventDefault());
 
     // Two event listeners to higlight the square on mouse passing
-    square.addEventListener("mouseover", () => square.style.border = "1px solid black");
-    square.addEventListener("mouseout", () => square.style.border = "none");
+    square.addEventListener("mouseover", () => square.style.border = "2px solid black");
+    square.addEventListener("mouseout", () => square.style.border = currentSquareBorder);
 
     // The effective drawing, when mouse is down and the drawing behaviour is enabled, stop when
     // leaving the mouse button.
@@ -97,7 +119,6 @@ function drawByClicking() {
 }; 
 
 function changeGridSize() {
-
   let newGridSize = 0;
   // Get the new grid size by prompting the user; limiting grid size to 100;
   while (true) {
@@ -107,7 +128,8 @@ function changeGridSize() {
     // Validating user input
     if (newGridSize > 0 && newGridSize < 101) {
       break;
-    } else {
+    } 
+    else {
       continue;
     }
   }
@@ -116,10 +138,26 @@ function changeGridSize() {
     gridContainer.removeChild(gridContainer.lastChild); // It actually removes the rows;
   }
   createGrid(newGridSize, newGridSize);
+  changeSizeButton.textContent = "Change Grid Size: " + newGridSize + "x" + newGridSize
 };
 
 function toggleGridView() {
-  // TODO
+  // Grab a reference to the squares, set the grid view and change every div border
+  const squares = gridContainer.querySelectorAll(".square");
+
+  isGridVisible = !isGridVisible;
+
+  if(isGridVisible) {
+    currentSquareBorder = "1px solid gray";
+    toggleGridViewButton.textContent = "Toggle grid: ON"
+  } 
+  else {
+    currentSquareBorder = "none";
+    toggleGridViewButton.textContent = "Toggle grid: OFF"
+  }
+  for (const square of squares) {
+    square.style.border = currentSquareBorder;
+  } 
 }
 
 function setDrawMode() {
@@ -127,7 +165,8 @@ function setDrawMode() {
   
   if (drawMode === "Sketch") {
     drawMode = "Click";
-  } else if (drawMode === "Click") {
+  } 
+  else if (drawMode === "Click") {
     drawMode = "Sketch";
   }
   changeModeButton.textContent = "Mode: " + drawMode;
