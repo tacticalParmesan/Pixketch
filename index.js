@@ -10,7 +10,7 @@ const changeSizeButton = document.querySelector(".size");
 const changeModeButton = document.querySelector(".change-mode");
 
 // Check for current drawing mode and a bool to let draw by click and hover;
-let drawMode = "Sketch"; // Default mode is sketch
+let drawMode = "Click"; // Default mode is click
 let isDrawing = false; 
 
 // Start the app when the window is loaded;
