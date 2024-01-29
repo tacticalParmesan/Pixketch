@@ -11,7 +11,7 @@ const changeModeButton = document.querySelector(".change-mode");
 
 // Check for current drawing mode and a bool to let draw by click and hover;
 let drawMode = "Click"; // Default mode is click
-let isDrawing = false; 
+let isDrawing = false;  
 
 // Start the app when the window is loaded;
 window.onload(initializeApp());
