@@ -14,7 +14,7 @@ const toggleGridViewButton = document.querySelector(".toggle");
 // Check for current drawing mode and a bool to let draw by click and hover;
 let drawMode = "Click"; // Default mode is click
 let isDrawing = false;  
-let currentColor = root.style.getPropertyValue("--current-color");
+let currentColor = "black";
 
 // Save the border in case grid visibility is set to On;
 let isGridVisible = false; // False by default
@@ -35,6 +35,23 @@ function initializeApp() {
   changeModeButton.addEventListener("mousedown", setDrawMode);
   toggleGridViewButton.addEventListener("mousedown", toggleGridView);
 
+  // Initialize utility buttons
+  const utilityButtons = document.querySelectorAll(".utility");
+  utilityButtons.forEach(
+    (utilityButton) => {
+      utilityButton.addEventListener("mousedown", (clickEvent) => {
+        const buttonID = clickEvent.target.id;
+        if (buttonID === "pencil") {
+          changeColor("black");
+        }  
+        else if (buttonID === "eraser") {
+          changeColor("azure");
+        }
+      });
+    }
+  );
+
+  // Initialize change color buttons
   const colorButtons = document.querySelectorAll(".color");
   colorButtons.forEach(
     (colorButton) => {
@@ -43,8 +60,7 @@ function initializeApp() {
       } )
     }
   )
-
-}
+};
 
 function createGrid(rows=16, cols= 16) {
   /* Create a grid with specified rows and columns; the grid display will be achieved
@@ -112,7 +128,7 @@ function drawByClicking() {
     square.addEventListener("dragstart", (e) => e.preventDefault());
 
     // Two event listeners to higlight the square on mouse passing
-    square.addEventListener("mouseover", () => square.style.border = "2px solid " + currentColor);
+    square.addEventListener("mouseover", () => square.style.border = "0.5px solid " + currentColor);
     square.addEventListener("mouseout", () => square.style.border = currentSquareBorder);
 
     // The effective drawing, when mouse is down and the drawing behaviour is enabled, stop when
