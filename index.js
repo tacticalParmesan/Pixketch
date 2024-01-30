@@ -1,5 +1,6 @@
 // Getting global necessary references
 const body = document.querySelector("body");
+const root = document.querySelector(":root");
 
 // This one is not a constant because it is constantly being
 // cloned and replace while switching modes;
@@ -13,6 +14,7 @@ const toggleGridViewButton = document.querySelector(".toggle");
 // Check for current drawing mode and a bool to let draw by click and hover;
 let drawMode = "Click"; // Default mode is click
 let isDrawing = false;  
+let currentColor = root.style.getPropertyValue("--current-color");
 
 // Save the border in case grid visibility is set to On;
 let isGridVisible = false; // False by default
@@ -25,11 +27,23 @@ window.onload = initializeApp();
 
 function initializeApp() {
   // Web App's first execution, call basic functions and grab necessary references
-  createGrid();
-  draw(); 
+  createGrid();  // Create the first grid;
+  draw(); // Enable drawinf according to default mode;
+
+  // Attach event listeners to UI buttons
   changeSizeButton.addEventListener("mousedown", changeGridSize);
   changeModeButton.addEventListener("mousedown", setDrawMode);
   toggleGridViewButton.addEventListener("mousedown", toggleGridView);
+
+  const colorButtons = document.querySelectorAll(".color");
+  colorButtons.forEach(
+    (colorButton) => {
+      colorButton.addEventListener("mousedown", (clickEvent) => {
+        changeColor(clickEvent.target.id);
+      } )
+    }
+  )
+
 }
 
 function createGrid(rows=16, cols= 16) {
@@ -83,7 +97,7 @@ function drawByHovering() {
   // Get every square in the string and attach an event listener to it
   const squares = gridContainer.querySelectorAll(".square");
   for (const square of squares) {
-    square.addEventListener("mouseover", () => square.style.backgroundColor = "black");
+    square.addEventListener("mouseover", () => square.style.backgroundColor = currentColor);
   };
 } 
 
@@ -98,7 +112,7 @@ function drawByClicking() {
     square.addEventListener("dragstart", (e) => e.preventDefault());
 
     // Two event listeners to higlight the square on mouse passing
-    square.addEventListener("mouseover", () => square.style.border = "2px solid black");
+    square.addEventListener("mouseover", () => square.style.border = "2px solid " + currentColor);
     square.addEventListener("mouseout", () => square.style.border = currentSquareBorder);
 
     // The effective drawing, when mouse is down and the drawing behaviour is enabled, stop when
@@ -106,13 +120,13 @@ function drawByClicking() {
     square.addEventListener("mousedown", (e) => {
       if (e.button === 0) {  // Draw only with the left mouse button! 
         isDrawing = true;
-        square.style.backgroundColor = "black";  
+        square.style.backgroundColor = currentColor;  
       }
   });
     square.addEventListener("mouseup", (e) => isDrawing = false);
     square.addEventListener("mouseover", () => {
       if (isDrawing) {
-        square.style.backgroundColor = "black";
+        square.style.backgroundColor = currentColor;
       }
     });
   };
@@ -178,6 +192,11 @@ function cloneGrid() {
   const clonedGrid = gridContainer.cloneNode(true);
   gridContainer.replaceWith(clonedGrid);
   gridContainer = clonedGrid;
+}
+
+function changeColor(selectedColor) {
+  root.style.setProperty("--current-color", selectedColor);
+  currentColor = root.style.getPropertyValue("--current-color");
 }
 
 

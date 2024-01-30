@@ -11,6 +11,7 @@
   --grid-background: #ffe596;
   --text: #313638;
   --pixel-font: "VT323", sans-serif;
+  --current-color: black;
 }
 
 /* Body styiling */
@@ -82,7 +83,7 @@ a {
 
 .drawing-area {
   display: flex;
-  gap: 5rem;
+  gap: 2rem;
   margin-top: 4rem;
 }
 
@@ -90,8 +91,7 @@ a {
 .sidebar {
   border: 8px solid var(--elements-border);
   border-radius: 4px;
-  height:  50vh;
-  margin-top: 8vh;
+  height:  500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,8 +114,8 @@ ul.sidebar-options {
   border: 8px solid var(--elements-border);
   border-radius: 4px;
   justify-content: space-between;
-  width: 700px;
-  height: 700px;
+  width: 500px;
+  height: 500px;
 }
 
 .grid-row {
