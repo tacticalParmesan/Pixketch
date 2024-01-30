@@ -11,7 +11,9 @@
 <body>
 	<div class="header">
 		<div id="title">
-			<div id="title-text">Pixketch</div>
+			<div id="title-text">Pixketch<span class="material-symbols-outlined">draw
+          </span>
+      </div>
 		</div>
 		<div class="links">
 			<a href="#" target = "_blank" id="about-page">About</a>
@@ -20,7 +22,7 @@
   </div>
 
   <div class="options-bar">
-    <button class="options-bar-button size">Change Grid Size: 10x10</button>
+    <button class="options-bar-button size">Change Grid Size: 16x16</button>
     <button class="options-bar-button toggle">Toggle grid: OFF</button>
     <button class="options-bar-button change-mode">Mode: Click</button>
 
@@ -29,16 +31,62 @@
   <div class="drawing-area">
     <div class="sidebar">
       <ul class="sidebar-options">
-        <li><button class="utility" id="pencil">P</button></li>
-        <li><button class="utility" id="eraser">E</button></li>
-        <li><button class="color" id="red">R</button></li>
-        <li><button class="color" id="blue">B</button></li>
-        <li><button class="color" id="yellow">Y</button></li>
-        <li><button class="color" id="green">G</button></li>
-        <li><button class="color" id="violet">V</button></li>
-        <li><button class="color" id="orange"">O</button></li>
-        <li><button class="color" id="brown">Br</button></li>
-        <li><button class="color" id="indigo">I</button></li>
+        <li>
+          <button class="utility" id="pencil">
+          <span class="material-symbols-outlined" id="pencil">edit</span>
+          </button>
+        </li>
+        <li>
+          <button class="utility" id="eraser">
+            <span class="material-symbols-outlined" id="eraser">ink_eraser</span>
+          </button>
+        </li>
+        <li>
+          <button class="utility" id="delete">
+          <span class="material-symbols-outlined" id="delete">delete</span>
+          </button>
+        </li>
+        <span class="material-symbols-outlined">horizontal_rule</span>
+        <li>
+          <button class="color" id="red">
+            <span class="material-symbols-outlined" id="red">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="blue">
+            <span class="material-symbols-outlined" id="blue">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="yellow">
+            <span class="material-symbols-outlined" id="yellow">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="green">
+            <span class="material-symbols-outlined" id="green">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="violet">
+            <span class="material-symbols-outlined" id="violet">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="orange">
+            <span class="material-symbols-outlined" id="orange">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="brown">
+            <span class="material-symbols-outlined" id="brown">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="indigo">
+            <span class="material-symbols-outlined" id="indigo">palette</span>
+          </button>
+        </li>
       </ul>
     </div>
     <div class="grid-container">

@@ -17,7 +17,7 @@ let isDrawing = false;
 let currentColor = "black";
 
 // Save the border in case grid visibility is set to On;
-let isGridVisible = false; // False by default
+let isGridVisible = true; // True by default
 let currentSquareBorder = "none"; // White is default;
 
 // Start the app when the window is loaded;
@@ -28,7 +28,8 @@ window.onload = initializeApp();
 function initializeApp() {
   // Web App's first execution, call basic functions and grab necessary references
   createGrid();  // Create the first grid;
-  draw(); // Enable drawinf according to default mode;
+  draw(); // Enable drawing according to default mode;
+  toggleGridView() // Initialize the grid
 
   // Attach event listeners to UI buttons
   changeSizeButton.addEventListener("mousedown", changeGridSize);
@@ -47,6 +48,9 @@ function initializeApp() {
         else if (buttonID === "eraser") {
           changeColor("azure");
         }
+        else if (buttonID === "delete") {
+          clearGrid();
+        }
       });
     }
   );
@@ -58,7 +62,9 @@ function initializeApp() {
       colorButton.addEventListener("mousedown", (clickEvent) => {
         changeColor(clickEvent.target.id);
       } )
+       colorButton.style.backgroundColor = colorButton.id;
     }
+
   )
 };
 
@@ -215,5 +221,10 @@ function changeColor(selectedColor) {
   currentColor = root.style.getPropertyValue("--current-color");
 }
 
-
+function clearGrid() {
+  const squares = gridContainer.querySelectorAll(".square");
+  for (const square of squares) {
+    square.style.backgroundColor = "azure";
+  } 
+}
 
