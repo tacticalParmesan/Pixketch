@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="index.js" defer></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="style.css">
   <title>Etch-a-Scketch</title>
 </head>
 <body>
 	<div class="header">
 		<div id="title">
-			<div id="title-text">Etch-a-Scketch</div>
+			<div id="title-text">Pixketch<span class="material-symbols-outlined">draw
+          </span>
+      </div>
 		</div>
 		<div class="links">
 			<a href="#" target = "_blank" id="about-page">About</a>
@@ -19,11 +22,78 @@
   </div>
 
   <div class="options-bar">
-    <button id="size-button">Change Size</button>
+    <button class="options-bar-button size">Change Grid Size: 16x16</button>
+    <button class="options-bar-button toggle">Toggle grid: OFF</button>
+    <button class="options-bar-button change-mode">Mode: Click</button>
+
   </div>
 
-  <div class="grid-container">
-    <!-- Append the grid under this DIV in Js -->
+  <div class="drawing-area">
+    <div class="sidebar">
+      <ul class="sidebar-options">
+        <li>
+          <button class="utility" id="pencil">
+          <span class="material-symbols-outlined" id="pencil">edit</span>
+          </button>
+        </li>
+        <li>
+          <button class="utility" id="eraser">
+            <span class="material-symbols-outlined" id="eraser">ink_eraser</span>
+          </button>
+        </li>
+        <li>
+          <button class="utility" id="delete">
+          <span class="material-symbols-outlined" id="delete">delete</span>
+          </button>
+        </li>
+        <span class="material-symbols-outlined">horizontal_rule</span>
+        <li>
+          <button class="color" id="red">
+            <span class="material-symbols-outlined" id="red">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="blue">
+            <span class="material-symbols-outlined" id="blue">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="yellow">
+            <span class="material-symbols-outlined" id="yellow">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="green">
+            <span class="material-symbols-outlined" id="green">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="violet">
+            <span class="material-symbols-outlined" id="violet">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="orange">
+            <span class="material-symbols-outlined" id="orange">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="brown">
+            <span class="material-symbols-outlined" id="brown">palette</span>
+          </button>
+        </li>
+        <li>
+          <button class="color" id="indigo">
+            <span class="material-symbols-outlined" id="indigo">palette</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="grid-container">
+      <!-- Append the grid under this DIV in Js -->
+    </div>
+
   </div>
+
 </body>
 </html>
