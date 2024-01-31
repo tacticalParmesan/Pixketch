@@ -6,7 +6,8 @@
   height: 100vh;
   --background-color: bisque;
   --elements-color: #975330;
-  --elements-border: #c57938;
+  --elements-border: #6D8E9E;
+  /*#7699AA;*/
   --highlight-color: #D5AC4A;
   --grid-background: #ffe596;
   --text: #313638;
@@ -38,7 +39,7 @@ body {
 }
 
 #title {
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 .links {
@@ -73,7 +74,7 @@ a:hover {
 }
 
 .options-bar-button {
-  background-color: var(--elements-border);
+  background-color: rgb(0, 0, 0, 0);
   border: none;
   font-size: 1.2rem;
   font-family: var(--pixel-font);
@@ -89,16 +90,25 @@ a:hover {
 }
 
 /* Drawing area settings*/
+#screenshot-text {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--text);
+  opacity: 0.8;
+  border-radius: 4px;
+  padding: 0.3rem;
+}
 
 .drawing-area {
   display: flex;
-  gap: 2rem;
-  margin-top: 4rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  
 }
 
 /* Sidebar Styling */
 .sidebar {
-  border: 8px solid var(--elements-color);
+  border: 8px solid var(--elements-border);
   background-color: var(--elements-border);
   opacity: 0.8;
   border-radius: 4px;
